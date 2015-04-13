@@ -47,6 +47,18 @@ echo $this->doctype();
 </head>
 
 <body >
+<?php 
+// get service locator
+$sl = $this->viewmodel()->getView()->getHelperPluginManager()->getServiceLocator();
+
+$Auth = new AuthenticationService();
+// check has identity, else Tests cases will fail
+if($Auth->hasIdentity()){
+	$AuthStorage = $Auth->getStorage()->read();
+	$DirectoryData->buffer();
+}
+
+?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -62,15 +74,11 @@ echo $this->doctype();
 			     <ul class="nav navbar-nav">
 					<li class="active"><a href="<?php echo $this->url('user',array('controller'=>'dashboard','action'=>'index')) ?>"><span
 							class='glyphicon glyphicon-dashboard'></span> <?php echo $this->translate('Dashboard') ?></a></li>
-								
-        			<li class=""><a
-						href="<?php echo $this->url('zf-apigility/documentation') ?>"><span
-							class='glyphicon glyphicon-link'></span> <?php echo $this->translate('API doc') ?></a></li>
 							
 				</ul>
 				<?php } else {?>
 			     <ul class="nav navbar-nav">
-					<li class="active"><a href="<?php echo $this->url('auth',array('controller'=>'login',)) ?>">
+					<li class="active"><a href="<?php //echo $this->url('auth',array('controller'=>'login',)); ?>">
 							<?php echo $this->translate('Login') ?></a></li>
 					
 				</ul>
@@ -85,11 +93,11 @@ echo $this->doctype();
 							<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="<?php echo $this->url('user',array('controller'=>'account','action'=>'profile')) ?>"><span
+							<li><a href="<?php // echo $this->url('user',array('controller'=>'account','action'=>'profile')) ?>"><span
 									class='glyphicon glyphicon-user'></span> <?php echo $this->translate('Profile') ?></a></li>
 							<li class="divider"></li>
 									
-							<li><a href="<?php echo $this->url('auth',array('controller'=>'login','action'=>'quit')) ?>"><span
+							<li><a href="<?php // echo $this->url('auth',array('controller'=>'login','action'=>'quit')) ?>"><span
 									class='glyphicon glyphicon-log-out text text-danger'></span> <?php echo $this->translate('Logout') ?></a></li>
 						</ul></li>
 
@@ -127,8 +135,8 @@ echo $this->doctype();
 				<hr> 
 				<footer>
 				<br><br>
-					<p>&copy;  <?php echo date('Y') ?>. <?php echo $this->translate('All rights reserved.') ?>
-					<small class='pull-right'><a href='http://www.google.com'>www.mycompany.com</a></small>
+					<p>&copy; Aspin Management Systems Ltd <?php echo date('Y') ?>. <?php echo $this->translate('All rights reserved.') ?>
+					<small class='pull-right'><a href='http://www.bookit24.com'>www.bookit24.com</a></small>
 					</p>
 					<br><br><br><br><br><br><br><br><br><br>
 				</footer>

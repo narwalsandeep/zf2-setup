@@ -18,7 +18,7 @@ class IndexController extends AbstractActionController
      */
 	public function indexAction()
     {
-		//die('landing page');
+		die("<pre>Setup looks great !<hr> This code is in  ".__FILE__ ."</pre>");
         $this->redirect()->toRoute('auth', array(
             'controller' => 'login'
         ));

@@ -9,14 +9,14 @@ This is a simple but feature rich zf2-setup. It not only give you working of zf2
 - inbuild with Noty Plugin <a href="http://ned.im/noty/#/about">link to noty website</a>
 - inbuild Installer will allow you to create all database classfiles automatically. simply put you ddl in defined location and run installer
 - db classes with lot of finder and database methods at single location
-- inbuild100% bootstrap and flat UI theme 
+- inbuild 100% bootstrap and flat UI theme 
 - flyjax plugin to submit any form using ajax
 - sample signup form
 - sample contact us form
 
 ### Installation
 - use composer e.g. php composer.phar install
-- create /config/autoload/local.php with "dsn", "username", and "password" (check zf2 website for an example)
+- create /config/autoload/local.php with "dsn", "username", and "password" (check <a href="http://framework.zend.com/manual/current/en/user-guide/database-and-models.html">here</a>)
 - thats it
 
 ### Roadmap

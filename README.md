@@ -1,5 +1,5 @@
 # zf2-setup 
-extended version
+Extended version with Installer from DDL.
 
 ### Description
 This is a simple but feature rich zf2-setup. It not only give you working of zf2 module structure, but extends db mapper and other custom class files ready to be use.
@@ -17,7 +17,7 @@ This is a simple but feature rich zf2-setup. It not only give you working of zf2
 ### Installation
 - use composer e.g. php composer.phar install
 - create /config/autoload/local.php with "dsn", "username", and "password" (check <a href="http://framework.zend.com/manual/current/en/user-guide/database-and-models.html">here</a>)
-- thats it
+- thats it !
 
 ### Roadmap
 Create a simple blog based on installer

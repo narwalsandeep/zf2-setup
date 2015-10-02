@@ -3,8 +3,9 @@
 	<div class="container">
 		<!-- BEGIN PAGE TITLE -->
 		<div class="pull-left ">
-			<a class="btn btn-xs btn-primary" href="<?php echo $this->basepath()?>/application/signin"><span class="glyphicon glyphicon-chevron-left"> </span>Back
-				to Login</a>
+			<a class="btn btn-xs btn-primary"
+				href="<?php echo $this->basepath()?>/application/signin"><span
+				class="glyphicon glyphicon-chevron-left"> </span>Back to Login</a>
 		</div>
 		<div class="clearfix"></div>
 		<div class="page-title">
@@ -12,6 +13,7 @@
 			<h3>
 				Installer. <small>please provide database information below and hit
 					submit.</small>
+
 				<hr>
 
 			</h3>
@@ -72,13 +74,17 @@
 							</div>
 							<div class="form-group form-md-line-input">
 								<label class="col-lg-4 control-label"></label>
-								<div class="col-lg-8 alert alert-danger">WARNING : This action
-									will first delete all existing tables and create new one. All
-									data will be lost.</div>
+								<small class="col-lg-8 text text-danger">
+									WARNING : This action will first delete all existing tables and
+									create new one. All data will be lost.
+									
+								</small>
 							</div>
 							<div class="form-group form-md-line-input">
 								<label class="col-lg-4 control-label"></label>
 								<div class="col-lg-8">
+								<small class="text text-danger">Make sure your sql file exists as /config/autoload/ddl.php</small>
+								<hr>
 									<button type="submit" class="btn btn-primary">Submit</button>
 								</div>
 							</div>

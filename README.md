@@ -3,6 +3,8 @@ Extended version with Installer from DDL.
 
 ### Description
 This is a simple but feature rich zf2-setup. It not only give you working of zf2 module structure, but extends db mapper and other custom class files ready to be use.
+
+Installer: It will read your sql and run all statements. Once done, it will create DB classes for each of table and extend those classes with custom files provided in this setup. Those custom files internally use ZF2 Database Adapter and Objects.
  
 ### Features
 - zf2 custom setup suitable for large project

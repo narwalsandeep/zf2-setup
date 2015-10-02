@@ -1,0 +1,37 @@
+<?php
+$show = 0;
+$flashMessage = $this->flashMessenger ()->getMessages ();
+if (count ( $flashMessage )) {
+	foreach ( $flashMessage as $key => $value ) {
+		foreach ( $value as $key_m => $value_m ) {
+			if ($key_m == 'warning' || $key_m == 'success' || $key_m == 'error' || $key_m == 'information') {
+				$type [] = $key_m;
+				$text [] = $value_m;
+				$show ++;
+			}
+		}
+	}
+}
+
+
+for($i = 0; $i < $show; $i ++) {
+	?>
+	<script>
+		noty({
+		    layout: 'topCenter',
+		    theme: 'relax', // or 'relax'
+		    type: '<?php echo $type[$i]?>',
+		    timeout:8000,
+		    closeWith: ['click'],
+		    text: '<span  class="glyphicon glyphicon-info-sign"></span> <?php echo $text[$i] ?>', // can be html or string
+		    dismissQueue: true, // If you want to use queue feature set this true
+			animation: {
+		        open: {height: 'toggle'}, // jQuery animate function property object
+		        close: {height: 'toggle'}, // jQuery animate function property object
+		        easing: 'swing', // easing
+		        speed: 200 // opening & closing animation speed
+		    }
+		});
+	</script>
+
+<?php }?>

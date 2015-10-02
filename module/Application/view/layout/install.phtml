@@ -1,0 +1,114 @@
+<?php
+use Zend\Authentication\AuthenticationService;
+echo $this->doctype ();
+?>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+        <?php echo $this->headTitle($this->translate(APP_NAME))->setSeparator(' - ')->setAutoEscape(false)?>
+
+        <?php echo $this->headMeta ()->appendName ( 'viewport', 'width=device-width, initial-scale=1.0' )->appendHttpEquiv ( 'X-UA-Compatible', 'IE=edge' )?>
+
+        <!-- Le styles -->
+        <?php
+			$headLink = $this->headLink ( array (
+				'rel' => 'shortcut icon',
+				'type' => 'image/vnd.microsoft.icon' 
+			) );
+			$headLink->prependStylesheet ( $this->basePath () . '/css/style.css' );
+			$headLink->prependStylesheet ( $this->basePath () . '/css/flat-bootstrap-theme.css' );
+			$headLink->prependStylesheet ( $this->basePath () . '/css/bootstrap-datetimepicker.css' );
+			$headLink->prependStylesheet ( $this->basePath () . '/css/fuelux.css' );
+			$headLink->prependStylesheet ( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" );
+			$headLink->prependStylesheet ( "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" );
+			echo $headLink;
+			?>
+          
+	        <!--[if IE 7]>
+			  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+			<![endif]-->
+	
+			<link href='http://fonts.googleapis.com/css?family=Indie+Flower'
+				rel='stylesheet' type='text/css'>
+			<!-- Scripts -->
+			        
+		    <?php
+			$headScript = $this->headScript ();
+			$headScript->prependFile ( $this->basePath () . '/js/jquery.flyjax.js', 'text/javascript' );
+			$headScript->prependFile ( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" );
+			$headScript->prependFile ( "//code.jquery.com/jquery-1.11.3.min.js" );
+			$headScript->prependFile ( $this->basePath () . '/js/respond.min.js', 'text/javascript', array (
+				'conditional' => 'lt IE 9' 
+			) );
+			$headScript->prependFile ( $this->basePath () . '/js/html5shiv.js', 'text/javascript', array (
+				'conditional' => 'lt IE 9' 
+			) );
+			echo $headScript;
+					
+		?>
+		<script src="//www.fuelcdn.com/fuelux/3.6.3/js/fuelux.min.js"></script>
+
+</head>
+<body class="fuelux">
+<?php
+// get service locator
+$sl = $this->viewmodel ()->getView ()->getHelperPluginManager ()->getServiceLocator ();
+
+// $UserTable = $sl->get('Model\Entity\User');
+$Auth = new AuthenticationService ();
+// check has identity, else Tests cases will fail
+if ($Auth->hasIdentity ()) {
+	$AuthStorage = $Auth->getStorage ()->read ();
+	// echo $AuthStorage->username;
+}
+echo $this->partial ( 'flash-messages' );
+?>
+	<div class="container">
+		<div class='row'>
+			<div class='col-md-12'>
+
+				<div class="col-md-10"><?php echo $this->layout()->content; ?></div>
+
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-md-12 '>
+				<hr>
+				<footer>
+					<br> <br>
+					<p>&copy; <?php echo date('Y') ?>. <?php echo $this->translate('All rights reserved.')?>
+					<small class='pull-right'><a href='<?php echo APP_WEBSITE?>'><?php echo APP_WEBSITE?></a></small>
+					</p>
+					<br> <br> <br> <br>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+    <?php echo $this->inlineScript()?>
+    </body>
+</html>
+
+
+<script>
+
+function showNoty(type,message){
+	
+	noty({
+	    layout: 'topCenter',
+	    theme: 'relax', // or 'relax'
+	    type: type,
+	    timeout:5000,
+	    closeWith: ['click'],
+	    text: message,
+	    dismissQueue: true, // If you want to use queue feature set this true
+		animation: {
+	        open: {height: 'toggle'}, // jQuery animate function property object
+	        close: {height: 'toggle'}, // jQuery animate function property object
+	        easing: 'swing', // easing
+	        speed: 300 // opening & closing animation speed
+	    }
+	});
+}
+</script>

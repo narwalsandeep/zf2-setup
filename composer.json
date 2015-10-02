@@ -2,26 +2,8 @@
 	"name" : "zf2-setup",
 	"description" : "zf2-setup",
 	"require" : {
-		"php" : ">=5.3.3",
-		"zendframework/zendframework" : "2.4.*",
-		"zendframework/zend-developer-tools" : "dev-master",
-		"zfcampus/zf-apigility" : "dev-master",
-		"zfcampus/zf-apigility-admin" : "dev-master",
-		"zfcampus/zf-apigility-documentation" : "dev-master",
-		"imagine/imagine" : "dev-master",
-		"phpunit/phpunit-selenium" : "dev-master",
-		"zendframework/zendservice-amazon" : "dev-master"
-	},
-	"require-dev" : {
-		"zendframework/zftool" : "dev-master",
-		"zfcampus/zf-development-mode" : "dev-master",
-		"zfcampus/zf-apigility-welcome" : "dev-master",
-		"zfcampus/zf-deploy" : "dev-master",
-		"phpunit/phpunit" : "dev-master",
-		"phpunit/php-invoker" : "*",
-		"phpunit/dbunit" : "dev-master",
-		"phpunit/phpunit-selenium" : "dev-master",
-		"phpunit/phpunit-skeleton-generator" : "*"
+		"php" : ">=5.6",
+		"zendframework/zendframework" : "dev-master"
 	},
 	"keywords" : [
 		"zf2-setup"

@@ -18,9 +18,8 @@ class IndexController extends AbstractActionController
      */
 	public function indexAction()
     {
-		die("<pre>Setup looks great !<hr> This code is in  ".__FILE__ ."</pre>");
-        $this->redirect()->toRoute('auth', array(
-            'controller' => 'login'
+    	$this->redirect()->toRoute('application', array(
+            'controller' => 'signin'
         ));
     }
 }

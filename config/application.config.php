@@ -1,7 +1,9 @@
 <?php
 return array (
 	'modules' => array (
-		'Application' 
+		'Application',
+		'Core',
+		'Model'
 	),
 	'module_listener_options' => array (
 		'module_paths' => array (

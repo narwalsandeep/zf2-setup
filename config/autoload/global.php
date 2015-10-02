@@ -8,7 +8,6 @@ return array (
 		'adapters' => array (
 			'db' => array () 
 		),
-		'dsn' => 'mysql:dbname=dbname;host=localhost' 
 	),
 	'service_manager' => array (
 		'abstract_factories' => array (

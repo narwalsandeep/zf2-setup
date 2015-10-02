@@ -1,6 +1,6 @@
-<?php 
+<?php
 use Zend\Authentication\AuthenticationService;
-echo $this->doctype(); 
+echo $this->doctype ();
 ?>
 
 <html lang="en">
@@ -8,137 +8,97 @@ echo $this->doctype();
 <meta charset="utf-8">
         <?php echo $this->headTitle($this->translate(APP_NAME))->setSeparator(' - ')->setAutoEscape(false)?>
 
-        <?php
-        
-        echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')?>
+        <?php echo $this->headMeta ()->appendName ( 'viewport', 'width=device-width, initial-scale=1.0' )->appendHttpEquiv ( 'X-UA-Compatible', 'IE=edge' )?>
 
         <!-- Le styles -->
         <?php
-        
-        echo $this->headLink(array(
-            'rel' => 'shortcut icon',
-            'type' => 'image/vnd.microsoft.icon'
-            
-        ))
-            ->prependStylesheet($this->basePath() . '/css/style.css')
-            ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')?>
+								$headLink = $this->headLink ( array (
+									'rel' => 'shortcut icon',
+									'type' => 'image/vnd.microsoft.icon' 
+								) );
+								$headLink->prependStylesheet ( $this->basePath () . '/css/style.css' );
+								$headLink->prependStylesheet ( $this->basePath () . '/css/flat-bootstrap-theme.css' );
+								$headLink->prependStylesheet ( $this->basePath () . '/css/bootstrap-datetimepicker.css' );
+								$headLink->prependStylesheet ( $this->basePath () . '/css/fuelux.css' );
+								$headLink->prependStylesheet ( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" );
+								$headLink->prependStylesheet ( "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" );
+								echo $headLink;
+								?>
           
-			<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>            
-			
-			
-		<!-- Scripts -->
-        
-        <?php
-        
-        echo $this->headScript()
-            ->prependFile($this->basePath() . '/js/noty/packaged/jquery.noty.packaged.min.js')
-            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-            ->prependFile($this->basePath() . '/js/jquery.min.js')
-            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array(
-            'conditional' => 'lt IE 9'
-        ))
-            ->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array(
-            'conditional' => 'lt IE 9'
-        ));
-        ?>
+	        <!--[if IE 7]>
+			  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+			<![endif]-->
+
+<link href='http://fonts.googleapis.com/css?family=Indie+Flower'
+	rel='stylesheet' type='text/css'>
+<!-- Scripts -->
+			        
+		    <?php
+						$headScript = $this->headScript ();
+						$headScript->prependFile ( $this->basePath () . '/js/jquery.flyjax.js', 'text/javascript' );
+						$headScript->prependFile ( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" );
+						$headScript->prependFile ( "//code.jquery.com/jquery-1.11.3.min.js" );
+						$headScript->prependFile ( $this->basePath () . '/js/respond.min.js', 'text/javascript', array (
+							'conditional' => 'lt IE 9' 
+						) );
+						$headScript->prependFile ( $this->basePath () . '/js/html5shiv.js', 'text/javascript', array (
+							'conditional' => 'lt IE 9' 
+						) );
+						echo $headScript;
+						
+						?>
+		<script src="//www.fuelcdn.com/fuelux/3.6.3/js/fuelux.min.js"></script>
 
 </head>
 
-<body >
-<?php 
+
+<body class="fuelux">
+<?php
 // get service locator
-$sl = $this->viewmodel()->getView()->getHelperPluginManager()->getServiceLocator();
+$sl = $this->viewmodel ()->getView ()->getHelperPluginManager ()->getServiceLocator ();
 
-$Auth = new AuthenticationService();
+// $UserTable = $sl->get('Model\Entity\User');
+$Auth = new AuthenticationService ();
 // check has identity, else Tests cases will fail
-if($Auth->hasIdentity()){
-	$AuthStorage = $Auth->getStorage()->read();
-	$DirectoryData->buffer();
+if ($Auth->hasIdentity ()) {
+	$AuthStorage = $Auth->getStorage ()->read ();
+	// echo $AuthStorage->username;
 }
-
+echo $this->partial ( 'flash-messages' );
 ?>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="<?php echo $this->url('home') ?>">&nbsp;<?php echo $this->translate(APP_NAME) ?></a>
-			</div>
-			<div class="collapse navbar-collapse">
-				<?php if($Auth->hasIdentity()){?>
-			     <ul class="nav navbar-nav">
-					<li class="active"><a href="<?php echo $this->url('user',array('controller'=>'dashboard','action'=>'index')) ?>"><span
-							class='glyphicon glyphicon-dashboard'></span> <?php echo $this->translate('Dashboard') ?></a></li>
-							
-				</ul>
-				<?php } else {?>
-			     <ul class="nav navbar-nav">
-					<li class="active"><a href="<?php //echo $this->url('auth',array('controller'=>'login',)); ?>">
-							<?php echo $this->translate('Login') ?></a></li>
-					
-				</ul>
-				<?php }?>
-				
-				
-				<?php if($Auth->hasIdentity()){?>
-				<ul class="nav navbar-nav pull-right">
+	<div class="container">
+		<div class='row'>
+			<div class='col-md-12'>
 
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user  "></span> <?php echo $this->translate("Account")?>
-							<span class="caret"></span>
-					</a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="<?php // echo $this->url('user',array('controller'=>'account','action'=>'profile')) ?>"><span
-									class='glyphicon glyphicon-user'></span> <?php echo $this->translate('Profile') ?></a></li>
-							<li class="divider"></li>
-									
-							<li><a href="<?php // echo $this->url('auth',array('controller'=>'login','action'=>'quit')) ?>"><span
-									class='glyphicon glyphicon-log-out text text-danger'></span> <?php echo $this->translate('Logout') ?></a></li>
-						</ul></li>
+				<div class="col-sm-2">
+					<div class="list-group table-of-contents">
+						<a class="list-group-item"
+							href="<?php echo $this->basepath()?>/application/installer">Installer</a>
+						<a class="list-group-item"
+							href="<?php echo $this->basepath()?>/application/signin">Signin</a>
+						<a class="list-group-item"
+							href="<?php echo $this->basepath()?>/application/signup">Signup</a>
+						<a class="list-group-item"
+							href="<?php echo $this->basepath()?>/application/support/contact-us">Contact
+							Us</a>
 
-				</ul>
-				<!--  
-				<form class="navbar-form navbar-right"  action="<?php echo $this->url('storage',
-				    array('controller'=>'search','action'=>'file'))?>" method='get' role="search">
-					<div class="form-group">
-						<input type="text" class="form-control input-sm" name='q' placeholder="Search">
 					</div>
-					<button type="submit" class="btn btn-info btn-sm"><?php echo $this->translate("Go");?></button>
-				</form>
-				 -->
-				<?php }?>
-				
-			</div>
-			<!--/.nav-collapse -->
-		</div>
-	</nav>
-	<div class="container-fluid">
-		<div class='row'>
-			<div class='col-md-offset-1 col-md-10'>
-				<div class='col-md-2'>
-                	<div id="directory_tree"></div>				
 				</div>
-				<div class='col-md-10'>
-                    <?php echo $this->partial('flash-messages'); ?>
-                    
-                    <?php echo $this->layout()->content; ?>
-                </div>
+				<div class="col-md-10"><?php echo $this->layout()->content; ?></div>
+
 			</div>
 		</div>
 		<div class='row'>
-			<div class='col-md-offset-1 col-md-10 '>
-				<hr> 
+			<div class='col-md-12 '>
+				<hr>
 				<footer>
-				<br><br>
-					<p>&copy; Aspin Management Systems Ltd <?php echo date('Y') ?>. <?php echo $this->translate('All rights reserved.') ?>
-					<small class='pull-right'><a href='http://www.bookit24.com'>www.bookit24.com</a></small>
+					<br> <br> <small>
+						<p>&copy; <?php echo date('Y') ?>. <?php echo $this->translate('All rights reserved.')?>
+					<small class='pull-right'><a href='<?php echo PROJECT_WEBSITE?>'><?php echo PROJECT_WEBSITE?></a></small>
+					
+					</small>
 					</p>
-					<br><br><br><br><br><br><br><br><br><br>
+					<br> <br> <br> <br>
 				</footer>
 			</div>
 		</div>
@@ -150,10 +110,23 @@ if($Auth->hasIdentity()){
 
 
 <script>
-$(function () {
-	$('.flash-messages').delay('3000').fadeOut('5000');
 
-});
-		
+function showNoty(type,message){
+	
+	noty({
+	    layout: 'topCenter',
+	    theme: 'relax', // or 'relax'
+	    type: type,
+	    timeout:5000,
+	    closeWith: ['click'],
+	    text: message,
+	    dismissQueue: true, // If you want to use queue feature set this true
+		animation: {
+	        open: {height: 'toggle'}, // jQuery animate function property object
+	        close: {height: 'toggle'}, // jQuery animate function property object
+	        easing: 'swing', // easing
+	        speed: 300 // opening & closing animation speed
+	    }
+	});
+}
 </script>
-

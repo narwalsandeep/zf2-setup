@@ -1,0 +1,70 @@
+<!-- BEGIN PAGE HEAD -->
+<div class="page-head">
+	<div class="container">
+		<!-- BEGIN PAGE TITLE -->
+		<div class="page-title">
+			<h3>
+				Contact Us <br> <small class="text text-danger"><?php echo $this->translate("This is a static page example");?></small>
+				<hr>
+			</h3>
+		</div>
+		<!-- END PAGE TITLE -->
+	</div>
+</div>
+<!-- END PAGE HEAD -->
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+	<div class="container">
+		<!-- BEGIN PAGE CONTENT INNER -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="portlet light ">
+					<div class="portlet-body  ">
+
+						<form class="form-horizontal " flyjax
+							action="<?php echo $this->url("application",array("controller"=>"support","action"=>"process-contact-us"))?>"
+							method="post">
+							<div class="form-group form-md-line-input">
+								<label for="email" class="col-sm-2 control-label">Email</label>
+								<div class="col-lg-8">
+									<input type="text" class="form-control" name="email"
+										placeholder="your email">
+								</div>
+							</div>
+							<div class="form-group form-md-line-input">
+								<label for="message" class="col-sm-2 control-label">Message</label>
+								<div class="col-lg-8">
+									<textarea class="form-control" name="message" rows="8"
+										placeholder="message to send"></textarea>
+								</div>
+							</div>
+							<div class="form-group form-md-line-input">
+								<label class="col-sm-2 control-label"></label>
+								<div class="col-lg-8">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+
+						</form>
+						<br> <br> <br>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE CONTENT INNER -->
+	</div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<script>
+$(function() {
+
+	// via ajax submit plugin
+	$('form[flyjax]').flyjax({},function(form,response){
+	},function(form,response){
+	});
+
+});
+
+</script>

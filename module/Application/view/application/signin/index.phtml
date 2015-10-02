@@ -1,0 +1,69 @@
+<!-- BEGIN PAGE HEAD -->
+<div class="page-head">
+	<div class="container">
+		<!-- BEGIN PAGE TITLE -->
+		<div class="page-title">
+			<h3>
+				Signin to <?php echo APP_NAME?> Panel.
+				<hr>
+			</h3>
+		</div>
+		<!-- END PAGE TITLE -->
+	</div>
+</div>
+<!-- END PAGE HEAD -->
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+	<div class="container">
+		<!-- BEGIN PAGE CONTENT INNER -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="portlet light ">
+					<div class="portlet-body  ">
+						<form class="form-horizontal " flyjax
+							action="<?php echo $this->url("application",array("controller"=>"signin","action"=>"process"))?>"
+							method="post">
+							<div class="form-group form-md-line-input">
+								<div class="col-lg-4">
+									<input type="text" class="form-control" name="username"
+										placeholder="username">
+								</div>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" name="password"
+										placeholder="password">
+								</div>
+								<div class="col-lg-4">
+									<button type="submit" class="btn btn-success">Log me in <i class="glyphicon glyphicon-arrow-right"></i></button>
+								</div>
+							</div>
+						</form>
+						<br>
+						<small class="text text-danger">This website is under-construction!</small>
+						<br> <br>
+						<br>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE CONTENT INNER -->
+	</div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<script>
+$(function() {
+
+	// via ajax submit plugin
+	$('form[flyjax]').flyjax({},function(form,response){
+		$(".start-status").html("Installing ...<hr>");
+		$(".install-status").html("");
+		$(".install-status").html(response);
+	},function(form,response){
+		$(".install-status").html("");
+		$(".install-status").html(response.responseText);
+	});
+
+});
+
+</script>

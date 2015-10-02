@@ -12,32 +12,18 @@ return array (
 					) 
 				) 
 			),
-			// The following is a route to simplify getting started creating
-			// new controllers and actions without needing to create a new
-			// module. Simply drop new controllers in, and you can access them
-			// using the path /application/:controller/:action
 			'application' => array (
-				'type' => 'Literal',
+				'type' => 'Segment',
 				'options' => array (
-					'route' => '/application',
+					'route' => '/application[/:controller[/:action[/:id]]]',
+					'constraints' => array (
+						'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+						'action' => '[a-zA-Z][a-zA-Z0-9_-]*' 
+					),
 					'defaults' => array (
 						'__NAMESPACE__' => 'Application\Controller',
-						'controller' => 'Index',
+						'controller' => 'index',
 						'action' => 'index' 
-					) 
-				),
-				'may_terminate' => true,
-				'child_routes' => array (
-					'default' => array (
-						'type' => 'Segment',
-						'options' => array (
-							'route' => '/[:controller[/:action]]',
-							'constraints' => array (
-								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-								'action' => '[a-zA-Z][a-zA-Z0-9_-]*' 
-							),
-							'defaults' => array () 
-						) 
 					) 
 				) 
 			) 
@@ -67,6 +53,7 @@ return array (
 			'Application\Controller\Index' => 'Application\Controller\IndexController',
 			'Application\Controller\Signup' => 'Application\Controller\SignupController',
 			'Application\Controller\Signin' => 'Application\Controller\SigninController',
+			'Application\Controller\Installer' => 'Application\Controller\InstallerController',
 			'Application\Controller\Support' => 'Application\Controller\SupportController' 
 		) 
 	),
@@ -80,7 +67,7 @@ return array (
 			'application/layout' => __DIR__ . '/../view/layout/layout.phtml',
 			'error/404' => __DIR__ . '/../view/error/404.phtml',
 			'error/404-friendly' => __DIR__ . '/../view/error/404-friendly.phtml',
-			'error/index'             => __DIR__ . '/../view/error/index.phtml',
+			'error/index' => __DIR__ . '/../view/error/index.phtml',
 			'flash-messages' => __DIR__ . '/../view/layout/flash-messages.phtml' 
 		),
 		'template_path_stack' => array (

@@ -1,17 +1,14 @@
 <?php
 
+namespace Core;
 
-namespace Application;
-
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
-/**
- *
- * @author Sandeepn
- *        
- */
-class Module {
+
+class Module implements AutoloaderProviderInterface  {
+	
 	/**
 	 *
 	 * @param MvcEvent $e        	
@@ -30,13 +27,13 @@ class Module {
 	
 	/**
 	 *
-	 * @return multitype:multitype:multitype:string
+	 * @return multitype:multitype:string multitype:multitype:string
 	 */
 	public function getAutoloaderConfig() {
 		return array (
 			'Zend\Loader\StandardAutoloader' => array (
 				'namespaces' => array (
-					__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__ 
+					__NAMESPACE__ => __DIR__
 				) 
 			) 
 		);

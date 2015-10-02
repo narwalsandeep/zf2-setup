@@ -6,7 +6,7 @@
 error_reporting(E_ALL-E_NOTICE);
 ini_set('display_errors',true);
 define ('APP_NAME',"zf2-setup");
-
+define ('APP_WEBSITE',"zf2-setup");
 
 ini_set('post_max_size', '1024M');
 ini_set('upload_max_filesize', '1024M');
@@ -18,6 +18,7 @@ date_default_timezone_set('UTC');
 chdir(dirname(__DIR__));
 
 define('DOC_ROOT',dirname(__DIR__));
+
 
 // Decline static file requests back to the PHP built-in webserver
 if (php_sapi_name() === 'cli-server' && is_file(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))) {

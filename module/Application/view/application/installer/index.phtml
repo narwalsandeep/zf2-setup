@@ -1,0 +1,117 @@
+<!-- BEGIN PAGE HEAD -->
+<div class="page-head">
+	<div class="container">
+		<!-- BEGIN PAGE TITLE -->
+		<div class="pull-left ">
+			<a class="btn btn-xs btn-primary" href="<?php echo $this->basepath()?>/application/signin"><span class="glyphicon glyphicon-chevron-left"> </span>Back
+				to Login</a>
+		</div>
+		<div class="clearfix"></div>
+		<div class="page-title">
+
+			<h3>
+				Installer. <small>please provide database information below and hit
+					submit.</small>
+				<hr>
+
+			</h3>
+		</div>
+		<!-- END PAGE TITLE -->
+	</div>
+</div>
+<!-- END PAGE HEAD -->
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+	<div class="container">
+		<!-- BEGIN PAGE CONTENT INNER -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="portlet light">
+					<div class="portlet-body">
+						<form class="form-horizontal" flyjax
+							action="<?php echo $this->url("application",array("controller"=>"installer","action"=>"start"))?>"
+							method="post">
+							<div class="form-group form-md-line-input">
+								<label for="username" class="col-lg-4 control-label">DB Host</label>
+								<div class="col-lg-8">
+									<input type="text" class="form-control" name="host"
+										value="localhost" placeholder="">
+								</div>
+							</div>
+							<div class="form-group form-md-line-input">
+								<label for="username" class="col-lg-4 control-label">DB Name</label>
+								<div class="col-lg-8">
+									<input type="text" class="form-control" name="dbname"
+										placeholder="db must exists">
+								</div>
+							</div>
+							<div class="form-group form-md-line-input">
+								<label for="passwd" class="col-lg-4 control-label">DB Username</label>
+								<div class="col-lg-8">
+									<input type="text" class="form-control" name="username"
+										placeholder="">
+								</div>
+							</div>
+							<div class="form-group form-md-line-input">
+								<label for="passwd" class="col-lg-4 control-label">DB Password</label>
+								<div class="col-lg-8">
+									<input type="text" class="form-control" name="password"
+										placeholder="">
+								</div>
+							</div>
+
+							<div class="form-group form-md-line-input">
+								<label for="passwd" class="col-lg-4 control-label">Files
+									Location</label>
+								<div class="col-lg-8">
+									<input type="text" class="form-control"
+										name="directory_location" value="Model\Entity\Generated"
+										readonly placeholder=""> <small class="text text-info">Classes
+										will be saved in above location</small>
+								</div>
+							</div>
+							<div class="form-group form-md-line-input">
+								<label class="col-lg-4 control-label"></label>
+								<div class="col-lg-8 alert alert-danger">WARNING : This action
+									will first delete all existing tables and create new one. All
+									data will be lost.</div>
+							</div>
+							<div class="form-group form-md-line-input">
+								<label class="col-lg-4 control-label"></label>
+								<div class="col-lg-8">
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="well">
+					<div class="start-status text text-primary">Installation Pending !
+					</div>
+					<div class="install-status"></div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE CONTENT INNER -->
+	</div>
+</div>
+<!-- END PAGE CONTENT -->
+
+<script>
+$(function() {
+
+	// via ajax submit plugin
+	$('form[flyjax]').flyjax({},function(form,response){
+		$(".start-status").html("Installing ...<hr>");
+		$(".install-status").html("");
+		$(".install-status").html(response);
+	},function(form,response){
+		$(".install-status").html("");
+		$(".install-status").html(response.responseText);
+	});
+
+});
+
+</script>

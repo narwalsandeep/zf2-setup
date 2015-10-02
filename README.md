@@ -11,7 +11,7 @@ This is a simple but feature rich zf2-setup. It not only give you working of zf2
 - db classes with lot of finder and database methods at single location
 - inbuild 100% bootstrap and flat UI theme 
 - flyjax plugin to submit any form using ajax
-- sample signup form
+- sample signup form with working example of request and json response and noty alert message
 - sample contact us form
 
 ### Installation

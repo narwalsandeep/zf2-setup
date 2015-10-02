@@ -35,6 +35,7 @@ echo $this->doctype ();
 			        
 		    <?php
 						$headScript = $this->headScript ();
+						$headScript->prependFile ( $this->basePath () . '/js/noty/packaged/jquery.noty.packaged.min.js', 'text/javascript' );
 						$headScript->prependFile ( $this->basePath () . '/js/jquery.flyjax.js', 'text/javascript' );
 						$headScript->prependFile ( "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" );
 						$headScript->prependFile ( "//code.jquery.com/jquery-1.11.3.min.js" );

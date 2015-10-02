@@ -33,14 +33,14 @@
 										placeholder="password">
 								</div>
 								<div class="col-lg-4">
-									<button type="submit" class="btn btn-success">Log me in <i class="glyphicon glyphicon-arrow-right"></i></button>
+									<button type="submit" class="btn btn-success">
+										Log me in</span>
+									</button>
 								</div>
 							</div>
 						</form>
-						<br>
-						<small class="text text-danger">This website is under-construction!</small>
-						<br> <br>
-						<br>
+						<br> <small class="text text-danger">This website is
+							under-construction!</small> <br> <br> <br>
 
 					</div>
 				</div>
@@ -56,12 +56,12 @@ $(function() {
 
 	// via ajax submit plugin
 	$('form[flyjax]').flyjax({},function(form,response){
-		$(".start-status").html("Installing ...<hr>");
-		$(".install-status").html("");
-		$(".install-status").html(response);
+		if(response.success)
+			showNoty("success",response.message);
+		else
+			showNoty("error",response.message);
 	},function(form,response){
-		$(".install-status").html("");
-		$(".install-status").html(response.responseText);
+		showNoty("error",response.message);
 	});
 
 });
